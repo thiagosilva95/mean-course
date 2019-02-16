@@ -15,6 +15,6 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [PostCreateComponent]
 })
 export class AppModule { }

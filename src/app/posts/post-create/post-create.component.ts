@@ -9,6 +9,10 @@ export class PostCreateComponent implements OnInit {
 
   constructor() { }
 
+  onAddPost() {
+    alert('Save post')
+  }
+
   ngOnInit() {
   }
 
