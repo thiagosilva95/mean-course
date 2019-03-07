@@ -14,6 +14,7 @@ export class PostCreateComponent implements OnInit {
 
   private mode = 'create';
   private postId: string;
+  private post: Post;
 
   constructor(public postService: PostService, public route: ActivatedRoute) { }
 
@@ -30,6 +31,7 @@ export class PostCreateComponent implements OnInit {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
+        this.post = this.postService.getPost(this.postId);
       } else {
         this.mode = 'create';
         this.postId = null;
