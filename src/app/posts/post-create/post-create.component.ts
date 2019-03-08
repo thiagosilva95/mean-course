@@ -14,15 +14,20 @@ export class PostCreateComponent implements OnInit {
 
   private mode = 'create';
   private postId: string;
-  private post: Post;
+  post: Post;
 
   constructor(public postService: PostService, public route: ActivatedRoute) { }
 
-  onAddPost(form: NgForm) {
+  onSavePost(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    this.postService.addPost(form.value.title, form.value.content);
+    if (this.mode === 'create') {
+      this.postService.addPost(form.value.title, form.value.content);
+    } else {
+      this.postService.updatePost(this.postId, form.value.title, form.value.content);
+    }
+
     form.resetForm();
   }
 
