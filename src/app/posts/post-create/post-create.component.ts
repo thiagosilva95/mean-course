@@ -27,12 +27,12 @@ export class PostCreateComponent implements OnInit {
     }
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postService.addPost(form.value.title, form.value.content);
+      this.postService.addPost(this.form.value.title, this.form.value.content);
     } else {
-      this.postService.updatePost(this.postId, form.value.title, form.value.content);
+      this.postService.updatePost(this.postId, this.form.value.title, this.form.value.content);
     }
 
-    form.resetForm();
+    this.form.reset();
   }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class PostCreateComponent implements OnInit {
         validators: [Validators.required]
       })
 
-    })
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -52,9 +52,14 @@ export class PostCreateComponent implements OnInit {
         this.isLoading = true;
         this.postService.getPost(this.postId).subscribe(postData => {
           this.isLoading = false;
-          this.post = {id: postData._id, title: postData.title, content: postData.content};
+          this.post = {
+            id: postData._id,
+            title: postData.title,
+            content: postData.content
+          };
           this.form.setValue({
-            title: this.post.title, content: this.post.content
+            title: this.post.title,
+            content: this.post.content
           });
         });
       } else {
