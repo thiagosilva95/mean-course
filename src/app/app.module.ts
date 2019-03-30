@@ -23,6 +23,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
     PostCreateComponent,
     HeaderComponent,
     PostListComponent
+	
   ],
   imports: [
     BrowserModule,
