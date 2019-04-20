@@ -14,8 +14,9 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: NgForm) {
     if (!form.valid) {
-      return
+      return;
     }
+    this.isLoading = true;
     this.authService.login(form.value.email, form.value.password);
   }
 
